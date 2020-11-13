@@ -27,11 +27,11 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
 # )
-SECRET_KEY = '(1(4f4niy7hvu#mkrvso7!dec-h-2glb#l*hl3__o^qz@ymvdg'
+SECRET_KEY = '<MY SECREY KEY>'
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = (os.environ.get("DEBUG_VALUE") == 'True')
-
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# DEBUG = (os.environ.get("DEBUG_VALUE") == 'True')
+DEBUG = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -40,7 +40,7 @@ DEBUG = (os.environ.get("DEBUG_VALUE") == 'True')
 # SECURITY WARNING: don't run with debug turned on in production!
 # if debug is True else false
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Application definition
@@ -94,6 +94,8 @@ WSGI_APPLICATION = 'djangoapi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+# I used postgres, but sqlite is a good option
 
 DATABASES = {
     'default': {

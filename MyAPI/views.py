@@ -11,6 +11,7 @@ from . models import approvals
 from . serializers import approvalsSerializers
 import pickle
 from keras import backend as K
+from tensorflow.keras.models import Sequential
 import joblib
 import numpy as np
 from sklearn import preprocessing
@@ -24,7 +25,7 @@ class ApprovalsView(viewsets.ModelViewSet):
 	serializer_class = approvalsSerializers
 
 def ohevalue(df):
-	ohe_col=joblib.load(Path("MyAPI") / "allcol.pkl")
+	ohe_col=joblib.load(Path("MyAPI") / "models/allcol.pkl")
 	cat_columns=['Gender','Married','Education','Self_Employed','Property_Area']
 	df_processed = pd.get_dummies(df, columns=cat_columns)
 	newdict={}
@@ -38,8 +39,8 @@ def ohevalue(df):
 
 def approvereject(unit):
 	try:
-		mdl=joblib.load(Path("MyAPI") / "loan_model.pkl")
-		scalers=joblib.load(Path("MyAPI") / "scalers.pkl")
+		mdl=joblib.load(Path("MyAPI") / "models/loan_model.pkl")
+		scalers=joblib.load(Path("MyAPI") / "models/scalers.pkl")
 		X=scalers.transform(unit)
 		y_pred=mdl.predict(X)
 		y_pred=(y_pred>0.58)
